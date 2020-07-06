@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/09 13:59:20 by user42            #+#    #+#             */
-/*   Updated: 2020/06/10 15:05:19 by user42           ###   ########.fr       */
+/*   Created: 2020/07/01 11:50:39 by user42            #+#    #+#             */
+/*   Updated: 2020/07/06 18:46:23 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 
 void	ft_putchar(char c)
 {
-	write(1, &c, 1);
+	write (1, &c, 1);
 }
 
-int		check_base(char *base)
+int		ft_strlen(char *str)
 {
+	int len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
+}
+
+int		ft_check_base(char *base)
+{
+	int len;
 	int i;
 	int j;
 
+	len = 0;
 	i = 0;
-	j = 0;
-	if (base[0] == '\0' || base[1] == '\0')
+	if (ft_strlen(base) < 2)
 		return (0);
 	while (base[i] != '\0')
 	{
@@ -46,34 +57,35 @@ int		check_base(char *base)
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	int	size_base;
-	int	nbr_final[28];
+	long nbr_l;
+	char nbr_c[32];
+	int base_divider;
 	int i;
 
-	i = 0;
-	size_base = 0;
-	if(check_base(base) == 1)
+	if (ft_check_base(base) == 1)
 	{
+		base_divider = ft_strlen(base);
 		if (nbr < 0)
 		{
-			nbr = -nbr;
+			nbr_l = nbr;
+			nbr_l = nbr_l * -1;
 			ft_putchar('-');
 		}
-		while (base[size_base])
-			size_base++;
-		while (nbr)
+		else
+			nbr_l = nbr;
+		i = 0;
+		while (nbr_l > 0)
 		{
-			nbr_final[i] = nbr % size_base;
-			nbr = nbr / size_base;
-			i++;
+			nbr_c[i++] = base[nbr_l % base_divider];
+			nbr_l = nbr_l / base_divider;
 		}
 		while (--i >= 0)
-			ft_putchar(base[nbr_final[i]]);
-	}	
+			ft_putchar(nbr_c[i]);
+	}
 }
 
 int main(void)
 {
-	ft_putnbr_base(-2147483648, "DEL");
-	return(0);
+	ft_putnbr_base(-324, "01");
+	return (0);
 }
