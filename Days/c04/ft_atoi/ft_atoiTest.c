@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/15 10:16:25 by user42            #+#    #+#             */
-/*   Updated: 2020/06/15 10:32:07 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/17 18:10:35 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	ft_atoi(char *str)
 
 	i = 0;
 	neg = 0;
+	res = 0;
 	while (str[i] == 't' || str[i] == 'v' || str[i] == 'n' || str[i] == 'r' ||
 	str[i] == 'f' || str[i] == ' ' || str[i] == '+' || str[i] == '-')
 	{
@@ -31,9 +32,9 @@ int	ft_atoi(char *str)
 		neg = -1;
 	else
 		neg = 1;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i] >= '1' && str[i] <= '9')
 	{
-		res = res * 10 + (str[i] - '0');
+		res = res * 10 + (str[i] - 48);
 		i++;
 	}
 	printf("%d\n", res * neg);
@@ -42,6 +43,6 @@ int	ft_atoi(char *str)
 
 int main(void)
 {
-	ft_atoi("     --+---+123ab456 ");
+	ft_atoi("     --+--+-123ab456 ");
 	return (0);
 }

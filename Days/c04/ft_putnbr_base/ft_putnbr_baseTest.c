@@ -6,11 +6,12 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/07/01 11:50:39 by user42            #+#    #+#             */
-/*   Updated: 2020/07/06 18:46:23 by user42           ###   ########.fr       */
+/*   Updated: 2020/07/06 19:01:12 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include <stdio.h>
 
 void	ft_putchar(char c)
 {
@@ -62,6 +63,7 @@ void	ft_putnbr_base(int nbr, char *base)
 	int base_divider;
 	int i;
 
+	nbr_c[9] = 'a';
 	if (ft_check_base(base) == 1)
 	{
 		base_divider = ft_strlen(base);
@@ -76,11 +78,16 @@ void	ft_putnbr_base(int nbr, char *base)
 		i = 0;
 		while (nbr_l > 0)
 		{
-			nbr_c[i++] = base[nbr_l % base_divider];
+			nbr_c[i] = base[nbr_l % base_divider];
 			nbr_l = nbr_l / base_divider;
+			i++;
 		}
-		while (--i >= 0)
+		printf("\n\n%d\n\n", i);
+		while (i >= 0)
+		{
 			ft_putchar(nbr_c[i]);
+			i--;
+		}	
 	}
 }
 

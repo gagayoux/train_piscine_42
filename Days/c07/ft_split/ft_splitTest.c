@@ -6,12 +6,13 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/08 12:24:39 by user42            #+#    #+#             */
-/*   Updated: 2020/06/08 17:07:37 by user42           ###   ########.fr       */
+/*   Updated: 2020/06/30 18:49:28 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 
 int		ft_is_charset(char *charset, char c)
 {
@@ -21,10 +22,10 @@ int		ft_is_charset(char *charset, char c)
 	while (charset[i] != '\0')
 	{
 		if (charset[i] == c)
-			return (1);
+			return (true);
 		i++;
 	}
-	return (0);
+	return (false);
 }
 
 int		ft_words_count(char *str, char *charset)
@@ -36,14 +37,15 @@ int		ft_words_count(char *str, char *charset)
 	count = 0;
 	while (str[i] != '\0')
 	{
-		if ((ft_is_charset(charset, str[i]) == 0))
+		if ((ft_is_charset(charset, str[i]) == false))
 		{
 			count++;
-			while (ft_is_charset(charset, str[i]) == 0)
+			while (ft_is_charset(charset, str[i]) == false)
 				i++;
 		}
 		i++;
 	}
+	printf("%d\n", count);
 	return (count);
 }
 
@@ -104,8 +106,8 @@ char	**ft_split(char *str, char *charset)
 
 int		main(void)
 {
-	char *str = ",,,.B.o,njour.,.ca va,,,..";
-	char *charset = ".,";
+	char *str = "Salut.,Coucou..Cava;;.TuvasBien";
+	char *charset = ".,;";
 
 	ft_split(str, charset);
 	return (0);
