@@ -5,18 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/07/29 12:08:59 by user42            #+#    #+#             */
-/*   Updated: 2020/07/29 16:56:16 by user42           ###   ########.fr       */
+/*   Created: 2020/07/29 16:56:55 by user42            #+#    #+#             */
+/*   Updated: 2020/07/29 17:31:27 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* groups $FT_USER | tr ' ' ',' | tr -d '\n'
+/* find . -type f -name '*.sh' | sed 's/.*\///' | sed 's/...$//'
 
-groups permet d'afficher les groupes auxquels appartient un utilisateur
+le '.' sert a rechercher a partir du repertoire courant
 
-$FT_USER permet d'afficher la liste des grupes dans lesquels est membre le 
-login specifie dans la variable d'environement FT_USER
+find -type f -name '*.sh' permet de trouver des fichier dont le nom comporte '.sh'
 
-tr ' ' ',' permet de modifier les ' ' en ','
+sed 's/.*\///' permet d'afficher uniquement le nom des fichiers
 
-tr -d '\n' permet de supprimer le \n
+sed 's/...$//' permet de retirer les '.sh' de l'affichage
